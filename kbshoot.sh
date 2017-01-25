@@ -12,7 +12,7 @@
 #           xclip
 
 # user options
-USER="lyk"
+USER="lyk" # change this, obviously
 EXT="png"
 SUBDIR="i"
 # end
@@ -87,19 +87,20 @@ copy_file () {
     cp $1 $TMP/$NAME.$EXT
 }
 
+
 # some dep checks
 if ! installed exiftool; then
     dep_error
 fi
-
 if ! installed pngcrush; then
     dep_error
 fi
-
 if ! installed xclip; then
     dep_error
 fi
 
+
+# arg logic
 if [ $# -gt 1 ]; then
     show_help
 fi
@@ -123,17 +124,24 @@ if [ $# -eq 1 ]; then
     fi
 fi
 
+
+# strip all exif data
 exiftool -all= $TMP/$FILE &> /dev/null
 
+
+# pngcrush if file is a png
 if [ $EXT == ".png" ]; then
     pngcrush $TMP/$FILE $FINAL/$FILE &> /dev/null
 else
+    # if not just copy it
     cp $TMP/$FILE $FINAL/$FILE &> /dev/null
 fi
 
+# kbfs hosted url
 LINK="https://$USER.keybase.pub/$SUBDIR/$FILE"
 
 printf "  "
+# copies link to clipboards
 echo -n $LINK | xclip -i -sel p -f | xclip -i -sel c -f
 echo ""
 notify-send "upload complete"
