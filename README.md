@@ -27,3 +27,10 @@ usage : kbshoot
       : keybase
       : xclip
 ```
+
+#### to do
+
+ - delete single file
+ - delete all files
+ - get keybase user through api
+ - multiple filename options (rand, timestamp, words)
