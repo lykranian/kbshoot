@@ -6,15 +6,15 @@
 # run `run_keybase` and sign in
 
 # requires: maim+slop OR scrot   (maim+slop recommended)
-#+          pngcrush
+#           pngcrush
 #           libimage-exiftool-perl
 #           keybase
 #           xclip
 
 # user options
 USER="lyk" # change this, obviously
-EXT="png"
-SUBDIR="i"
+EXT="png" # png suggested, for pngcrush
+SUBDIR="i" # the keybase subdirectory name to use
 # end
 
 
@@ -100,7 +100,7 @@ if ! installed xclip; then
 fi
 
 
-# arg logic
+# horribly simple arg logic
 if [ $# -gt 1 ]; then
     show_help
 fi
