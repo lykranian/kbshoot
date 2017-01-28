@@ -60,9 +60,9 @@ dep_error () {
 }
 full_screen () {
     if installed maim; then
-	maim --format=png --opengl --mask=on --nokeyboard $TMP/$FILE
+	maim --format=png --opengl --mask=on --nokeyboard $1
     elif installed scrot; then
-	scrot -q 85 $TMP/$FILE
+	scrot -q 85 $1
     else
 	dep_error
     fi
@@ -71,9 +71,9 @@ full_screen () {
 }
 select_area () {
     if installed maim; then
-    maim --select --format=png --opengl --mask=on --magnify --bordersize 9001 --color=0.2,0.2,0.2,0.9 $TMP/$FILE
+    maim --select --format=png --opengl --mask=on --magnify --bordersize 9001 --color=0.2,0.2,0.2,0.9 $1
     elif installed scrot; then
-	scrot -s -q 85 $TMP/$FILE
+	scrot -s -q 85 $1
     else
 	dep_error
     fi
@@ -106,12 +106,12 @@ if [ $# -gt 1 ]; then
 fi
 
 if [ $# -eq 0 ]; then
-    full_screen
+    full_screen $TMP/$FILE
 fi
 
 if [ $# -eq 1 ]; then
     if [ $1 == "-s" ]; then
-	select_area
+	select_area $TMP/$FILE
     elif [ $1 == "-h" ]; then
 	 show_help
     else
