@@ -32,5 +32,8 @@ usage : kbshoot
 
  - delete single file
  - delete all files
- - get keybase user through api
- - multiple filename options (rand, timestamp, words)
+ - ~~get keybase user through api~~
+ - multiple filename options
+  - preserve filename
+  - rand
+  - timestamp

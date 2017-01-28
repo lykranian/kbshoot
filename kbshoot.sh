@@ -12,13 +12,37 @@
 #           xclip
 
 # user options
-USER="lyk" # change this, obviously
 EXT="png" # png suggested, for pngcrush
 SUBDIR="i" # the keybase subdirectory name to use
 # end
 
 
-# don't blame me if you touch anything and it stops working
+# don't blame me if you touch anything below and it stops working
+
+# function to check if program is installed
+installed () {
+    type "$1" &> /dev/null
+}
+# initial check for keybase
+if ! installed keybase; then
+    echo "  please install keybase."
+    exit
+fi
+
+# see if keybase is logged in
+LOGGED_IN_=$(keybase status | grep "Logged in")
+LOGGED_IN="${LOGGED_IN_##* }"
+if [ "$LOGGED_IN" != "yes" ]; then
+    echo "  you are not logged into keybase"
+    exit
+fi
+
+# get current keybase username
+USER_=$(keybase status | grep Username)
+USER="${USER_##* }"
+# USER="lyk" # set this to your user if prev 2 lines get it wrong
+
+# other prelim fs stuff
 NAME=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 5 | head -n 1)
 FILE="$NAME.$EXT"
 TMP="/tmp/$SUBDIR"
@@ -51,11 +75,8 @@ show_help () {
 
     exit
 }
-installed () {
-    type "$1" &> /dev/null
-}
 dep_error () {
-    echo " you are missing one or more dependencies. see -h for details."
+    echo "  you are missing one or more dependencies. see -h for details."
     exit
 }
 full_screen () {
