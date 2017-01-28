@@ -19,7 +19,7 @@ usage : kbshoot
  args : none        fullscreen
       : -s          select area
       : filename    upload file
-      : -h          show this help
+      : -h --help   show this help
 
  deps : maim+slop OR scrot
       : pngcrush

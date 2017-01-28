@@ -41,7 +41,7 @@ show_help () {
     echo "   args : none        fullscreen"
     echo "        : -s          select area"
     echo "        : filename    upload file"
-    echo "        : -h          show this help"
+    echo "        : -h --help   show this help"
     echo ""
     echo "   deps : maim+slop OR scrot"
     echo "        : pngcrush"
@@ -112,7 +112,7 @@ fi
 if [ $# -eq 1 ]; then
     if [ $1 == "-s" ]; then
 	select_area $TMP/$FILE
-    elif [ $1 == "-h" ]; then
+    elif [ $1 == "-h" ] || [ $1 == "--help" ]; then
 	 show_help
     else
 	if [ -e $1 ]; then
