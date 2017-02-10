@@ -2,6 +2,8 @@
 
 bash script for taking screenshots and sharing through kbfs
 
+OUTDATED / MERGED INTO MAIN SHOOT SCRIPT
+
 #### usage
 
 `kbshoot -h`
